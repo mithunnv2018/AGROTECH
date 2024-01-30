@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+.savex {
+	background-image: url(‘images/save-icon-green.gif’);
+}
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="true" enctype="multipart/form-data">
+
+		<p:growl autoUpdate="true" />
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+		<!--
+		<div style="width: 100%" align="right">
+			<p:commandButton value="Logout "
+				action="{questionsUtil.resetSessionMith('userMaster','loginpage')}"
+				style="font-size:xx-small;" />
+		</div>
+		-->
+		<!--<h6>Welcome user name #{userMaster.UUserName} to INDRAAGROTECH
+			page</h6>
+
+		-->
+
+		<h:panelGrid columns="2">
+			<!--<h:outputLabel value="What Do you want to do?" />
+			-->
+			<p:selectOneRadio value="#{productMasterController.toEdit}">
+
+				<f:selectItem itemLabel="Add new Product" itemValue="false" />
+				<f:selectItem itemLabel="Edit Existing Product" itemValue="true" />
+				<p:ajax listener="#{productMasterController.doMakeEditable()}"
+					update="@form"></p:ajax>
+			</p:selectOneRadio>
+		</h:panelGrid>
+
+		<div align="left">
+			<p:commandButton value="Edit"
+				rendered="#{productMasterController.doShowEditButton()}"
+				actionListener="#{productMasterController.doLoadUI()}"
+				update="@form" />
+		</div>
+		<p:dataTable rendered="#{productMasterController.showedit}" rows="20"
+			selectionMode="single"
+			selection="#{productMasterController.selectedproductmaster}"
+			value="#{productMasterController.listofoldproductmaster}"
+			var="oldmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldmaster2.productId}" id="iddatatable2">
+
+			<f:facet name="header">
+				<div align="left">Existing Product Master</div>
+			</f:facet>
+ 			<p:column>
+				<f:facet name="header">
+					<div align="left">Product Name</div>
+				</f:facet>
+				<h:outputText value="#{oldmaster2.productName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<div align="left">Primary Category</div>
+				</f:facet>
+				<h:outputText value="#{oldmaster2.tblCategoryMaster.catName}" />
+			</p:column>
+ 
+		</p:dataTable>
+
+		<p:panel style="width:100%;"
+			rendered="#{productMasterController.show}">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header">
+					<div align="left">
+						<h:outputText value="Add New Product"
+							rendered="#{productMasterController.toEdit==false}" />
+						<h:outputText value="Edit Product"
+							rendered="#{productMasterController.toEdit}" />
+					</div>
+				</f:facet>
+				<h:outputText value="Product Name:" />
+				 
+				<h:inputText value="#{productMasterController.productName}"  />
+
+				<h:outputText value="Product Description:" />
+				<p:editor value="#{productMasterController.description}" width="500"
+					height="150" />
+
+
+
+				<h:outputText value="Product Application:" />
+				<p:editor value="#{productMasterController.productapplication}"
+					width="500" height="150"  />
+
+				<h:outputText value="Product Packing:" />
+				<p:editor value="#{productMasterController.productpacking}"
+					width="500" height="150" />
+
+
+				<h:outputText value="Select Category:" />
+				<p:selectOneMenu value="#{productMasterController.productcategory}"
+					effect="fade"  >
+					<f:selectItem itemLabel="--Select--" itemValue="" />
+					<f:selectItems
+						value="#{productMasterController.listofoldcategorymaster}"
+						var="course" itemLabel="#{course.catName}"
+						itemValue="#{course.catId}"
+						itemDescription="#{course.catDesc} #{course.catId}" />
+				</p:selectOneMenu>
+			</p:panelGrid>
+
+			<p:spacer height="20"></p:spacer>
+			<p:panelGrid cellpadding="2" id="idpanelgrid5" style="width:100%;"
+				rendered="#{productMasterController.show}">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="2">
+							<div align="left">Enter Property Details</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Property Name:" />
+					</p:column>
+					<p:column>
+						<p:selectOneMenu value="#{productMasterController.tempform}"
+							effect="fade">
+							<f:selectItem itemLabel="--Select--" itemValue="-1" />
+							<f:selectItems value="#{productMasterController.oldform}"
+								var="formobj" itemLabel="#{formobj.formName}"
+								itemValue="#{formobj.formId}"
+								itemDescription="#{formobj.formDesc}" />
+						</p:selectOneMenu>
+					</p:column>
+
+				</p:row>
+
+				<p:row>
+					<p:column>
+						<h:outputLabel value="Value:" />
+					</p:column>
+					<p:column>
+						<h:inputText value="#{productMasterController.temppropertyvalue}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align:right;">
+
+						<p:commandButton value="Add Property" update="@form"
+							actionListener="#{productMasterController.doAddTo()}" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column colspan="2">
+						<p:dataTable rendered="true" rows="20" selectionMode="single"
+							selection="#{productMasterController.selectedformpowder}"
+							value="#{productMasterController.listofformpowder}"
+							var="oldmaster3" paginator="true" style="width:100%;"
+							rowKey="#{oldmaster3.formname}#{oldmaster3.powdername}"
+							id="iddatatable5">
+
+							<f:facet name="header">
+								<div align="left">Added Property</div>
+							</f:facet>
+							<p:column>
+								<f:facet name="header">
+									<div align="left">Property Name</div>
+								</f:facet>
+								<h:outputText value="#{oldmaster3.formname}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<div align="left">Property Value</div>
+								</f:facet>
+								<h:outputText value="#{oldmaster3.powdername}" />
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="2" style="text-align:right;">
+						<p:commandButton value="Delete Property"
+							actionListener="#{productMasterController.doDeleteTo()}"
+							update="@form">
+						</p:commandButton>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+			<p:panelGrid cellpadding="2" id="idpanelgrid66" style="width:100%;"
+				rendered="#{productMasterController.show}">
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="3">
+							<div align="left">Enter image for the products</div>
+						</p:column>
+					</p:row>
+				</f:facet>
+
+				<p:row>
+					<p:column>
+						Enter Thumb Nail Size Image: 
+						<h:outputText
+							value="#{productMasterController.productthumbnailimage}" />
+					</p:column>
+					<p:column>
+						<p:fileUpload id="idthumbnail" auto="true" mode="simple"
+							value="#{productMasterController.filethumbnailimage}"
+							sizeLimit="60000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+					</p:column>
+					<p:column>
+						<p:graphicImage
+							value="product_images/#{productMasterController.productthumbnailimage}" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column>
+						Enter Large Size Image:
+						<h:outputText value="#{productMasterController.productlargeimage}" />
+					</p:column>
+					<p:column>
+
+						<p:fileUpload id="idlarge2" auto="true" mode="simple"
+							value="#{productMasterController.filelargeimage}"
+							sizeLimit="90000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+					</p:column>
+					<p:column>
+
+						<p:graphicImage rendered="#{productMasterController.toEdit}"
+							value="product_images/#{productMasterController.productlargeimage}" />
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+
+
+			<p:spacer height="20"></p:spacer>
+
+			<div align="right">
+				<p:commandButton value="Save" ajax="true" id="idSaveAll"
+				 	rendered="#{!(productMasterController.toEdit)}" icon="savex"
+					action="#{productMasterController.doSaveProductMaster()}" />
+
+				<p:commandButton value="Update" ajax="true" id="idUpdateAll"
+					rendered="#{(productMasterController.toEdit)}"
+					action="#{productMasterController.doUpdateProductMaster()}" />
+
+				<p:commandButton value="Cancel" action="index.jsf?redirect=true" />
+			</div>
+
+		</p:panel>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

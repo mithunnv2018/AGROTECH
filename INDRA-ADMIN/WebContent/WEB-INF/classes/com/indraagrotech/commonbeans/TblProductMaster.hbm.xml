@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 Nov, 2012 11:40:22 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.indraagrotech.commonbeans.TblProductMaster" table="tbl_product_master" lazy="false">
+        <id name="productId" type="java.lang.Integer">
+            <column name="product_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblCategoryMaster" class="com.indraagrotech.commonbeans.TblCategoryMaster" fetch="select">
+            <column name="cat_id" length="50" not-null="true" />
+        </many-to-one>
+        <property name="productName" type="string">
+            <column name="product_name" not-null="true" />
+        </property>
+        <property name="productDesc" type="string">
+            <column name="product_desc" not-null="true" />
+        </property>
+        <property name="productApp" type="string">
+            <column name="product_app" not-null="true" />
+        </property>
+        <property name="productPacking" type="string">
+            <column name="product_packing" not-null="true" />
+        </property>
+        <property name="productTag" type="int">
+            <column name="product_tag" not-null="true" />
+        </property>
+        <property name="productBreadcrumb" type="string">
+            <column name="product_breadcrumb" length="200" not-null="true" />
+        </property>
+        <property name="productPrimaryCatId" type="string">
+            <column name="product_primary_cat_id" length="50" not-null="true" />
+        </property>
+        <property name="productThumbnailUrl" type="string">
+            <column name="product_thumbnail_url" not-null="true" />
+        </property>
+        <property name="productLargeimageUrl" type="string">
+            <column name="product_largeimage_url" not-null="true" />
+        </property>
+        <property name="productKeywords" type="string">
+            <column name="product_keywords" length="300" not-null="true" />
+        </property>
+        <property name="productCompanyname" type="string">
+            <column name="product_companyname" length="50" not-null="true" />
+        </property>
+        <property name="productStockpasteprepare" type="string">
+            <column name="product_stockpasteprepare"   not-null="true" />
+        </property>
+        <set name="tblProductDetailses" table="tbl_product_details" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="com.indraagrotech.commonbeans.TblProductDetails" />
+        </set>
+    </class>
+</hibernate-mapping>

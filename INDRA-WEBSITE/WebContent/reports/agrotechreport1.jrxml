@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agrotechreport1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1">
+		<queryString>
+			<![CDATA[SELECT
+     tbl_product_details.`prodetails_propertyvalue` AS tbl_product_details_prodetails_propertyvalue,
+     tbl_form_master.`form_name` AS tbl_form_master_form_name
+FROM
+     `tbl_form_master` tbl_form_master INNER JOIN `tbl_product_details` tbl_product_details ON tbl_form_master.`form_id` = tbl_product_details.`form_id`
+WHERE
+     tbl_product_details.`product_id` = 1]]>
+		</queryString>
+		<field name="tbl_product_details_prodetails_propertyvalue" class="java.lang.String"/>
+		<field name="tbl_form_master_form_name" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="MITHIMAGE" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\suns\\workspace3\\INDRA-WEBSITE\\WebContent\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="productName" class="java.lang.String"/>
+	<field name="productDesc" class="java.lang.String"/>
+	<field name="productApp" class="java.lang.String"/>
+	<field name="productPacking" class="java.lang.String"/>
+	<title>
+		<band height="116" splitType="Stretch">
+			<image hAlign="Left">
+				<reportElement x="0" y="16" width="555" height="68"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{MITHIMAGE}+"\\image_02.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="84" width="555" height="29" forecolor="#006699"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Technical Data Sheet x]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="431" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#006699"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="41" width="100" height="20" forecolor="#006699"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="73" width="532" height="57"/>
+				<textElement markup="html"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productDesc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="145" width="100" height="20" forecolor="#006699"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[APPLICATION:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="165" width="532" height="57"/>
+				<textElement markup="html"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productApp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="222" width="100" height="20" forecolor="#006699"/>
+				<textElement>
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[PACKING:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="242" width="532" height="89"/>
+				<textElement markup="html"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productPacking}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="331" width="532" height="100"/>
+				<subreportParameter name="MITHIMAGE2">
+					<subreportParameterExpression><![CDATA[$F{productName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "agrotechreport1_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

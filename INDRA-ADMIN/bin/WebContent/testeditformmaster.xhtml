@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="true">
+
+		<p:growl autoUpdate="true" />
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+
+		<div align="left">
+			<p:commandButton value="Edit" rendered="#{editFormMasterController.show}"
+				actionListener="#{editFormMasterController.doLoadUI()}"
+				update="@form" />
+		</div>
+
+
+		<p:dataTable rendered="#{editFormMasterController.show}" rows="20"
+			selectionMode="single"
+			selection="#{editFormMasterController.selectedtblformmaster}"
+			value="#{editFormMasterController.listofformmaster}" var="oldmaster2"
+			paginator="true" style="width:100%;" rowKey="#{oldmaster2.formId}"
+			id="iddatatable2">
+
+			<f:facet name="header"><div align="left">Existing Property</div></f:facet>
+			<p:column selectionMode="single" />
+			<p:column>
+				<f:facet name="header"><div align="left">Property Name</div></f:facet>
+				<h:outputText value="#{oldmaster2.formName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header"><div align="left">Property Description</div></f:facet>
+				<h:outputText value="#{oldmaster2.formDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+		<p:panel header="" style="width:100%;"
+			rendered="#{editFormMasterController.show==false}">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header"><div align="left">Property Details</div></f:facet>
+				<h:outputText value="Property Name:" />
+				<h:inputText value="#{editFormMasterController.formName}" />
+
+
+				<h:outputText value="Property Description:" />
+				<h:inputText value="#{editFormMasterController.description}" />
+			</p:panelGrid>
+
+			<div align="right">
+				<p:commandButton value="Update" ajax="false" id="idUpdateAll"
+					action="#{editFormMasterController.doUpdateFormMaster()}" />
+				<p:commandButton value="Cancel" action="index.jsf?redirect=true" />
+			</div>
+		</p:panel>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

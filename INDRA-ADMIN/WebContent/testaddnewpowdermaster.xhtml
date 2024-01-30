@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+ 
+	</style>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl autoUpdate="true" />
+		
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+		<div style="width: 700px" align="right">
+			<p:commandButton value="Logout "
+				action="#{questionsUtil.resetSessionMith('userMaster','loginpage')}"
+				style="font-size:xx-small;" />
+		</div>
+		<h6>Welcome user name #{userMaster.UUserName} to Indra Agro Tech  page</h6>
+		<h5>Powder Master</h5>
+		 
+		<p:dataTable rendered="true" rows="20"
+			value="#{powderMasterController.listofoldpowdermaster}"
+			var="oldtypingmaster2" paginator="true" style="width:100%;" rowKey="#{oldtypingmaster2.powId}">
+			<f:facet name="header">Existing Powder  Master</f:facet>
+			<p:column>
+				<f:facet name="header">Powder Name</f:facet>
+				<h:outputText value="#{oldtypingmaster2.powName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Powder Decscription</f:facet>
+				<h:outputText value="#{oldtypingmaster2.powDesc}" />
+			</p:column>
+ 
+		</p:dataTable>
+
+		<p:separator />
+		<p:separator />
+
+
+		<p:panel header="Add New Powder Master" style="width:100%;">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header">Initial Details</f:facet>
+
+				<h:outputText value="Powder Name :" />
+				<h:inputText value="#{powderMasterController.powderName}"/>
+				 
+
+				<h:outputText value="Powder Description:" />
+				<h:inputText value="#{powderMasterController.description}"/>
+ 
+
+  
+			</p:panelGrid>
+
+			<p:commandButton value="Save All!"   id="idSaveAll"
+				action="#{powderMasterController.doSavePowderMaster()}" />
+			<p:commandButton value="Cancel2" action="index.jsf?redirect=true" />
+
+		</p:panel>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

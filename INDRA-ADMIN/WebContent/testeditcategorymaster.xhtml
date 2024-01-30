@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="true">
+
+		<p:growl autoUpdate="true"  />
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+ 		<div align="left">
+			<p:commandButton value="Edit"
+				 rendered="#{editCategoryMasterController.show}"
+				actionListener="#{editCategoryMasterController.doLoadUI()}"
+				update="@form" />
+		</div> 
+		 <p:dataTable rendered="#{editCategoryMasterController.show}" rows="20" selectionMode="single"
+			selection="#{editCategoryMasterController.selectedtblcategorymaster}"
+			value="#{editCategoryMasterController.listofcategorymaster}"
+			var="oldmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldmaster2.catId}" id="iddatatable2" >
+			 
+			<f:facet name="header"><div align="left">Existing Primary Category</div></f:facet>
+ 			<p:column>
+				<f:facet name="header"><div align="left">Category Name</div></f:facet>
+				<h:outputText value="#{oldmaster2.catName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header"><div align="left">Category Description</div></f:facet>
+				<h:outputText value="#{oldmaster2.catDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+ 
+<!--		<p:panel header="" style="width:100%;">-->
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;" rendered="#{editCategoryMasterController.show==false}">
+				<f:facet name="header"><div align="left">Primary Category Details</div></f:facet>
+				<h:outputText value="Primary Category Name:" />
+				<h:inputText value="#{editCategoryMasterController.categoryName}" />
+
+
+				<h:outputText value="Primary Category Description:" />
+				<h:inputText value="#{editCategoryMasterController.description}" />
+   			</p:panelGrid>
+
+			<div align="right">
+			<p:commandButton value="Update" ajax="true"   rendered="#{editCategoryMasterController.show==false}"
+				id="idUpdateAll" update="@form"
+				action="#{editCategoryMasterController.doUpdateCategoryMaster()}" />
+			<p:commandButton value="Cancel" update="@form" ajax="true" action="editcategorymaster.jsf?redirect=true" rendered="#{editCategoryMasterController.show==false}" />
+			</div>
+<!--		</p:panel>-->
+
+
+	</h:form>
+
+</h:body>
+
+</html>

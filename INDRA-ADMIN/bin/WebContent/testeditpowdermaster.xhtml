@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="true">
+
+		<p:growl autoUpdate="true" />
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+		<div style="width: 700px" align="right">
+			<p:commandButton value="Logout "
+				action="#{questionsUtil.resetSessionMith('userMaster','loginpage')}"
+				style="font-size:xx-small;" />
+		</div>
+		<h6>Welcome user name #{userMaster.UUserName} to INDRAAGROTECH
+			page</h6>
+		<h5>Powder Master Modify</h5>	
+		 <p:dataTable rendered="true" rows="20" selectionMode="single"
+			selection="#{editPowderMasterController.selectedtblpowdermaster}"
+			value="#{editPowderMasterController.listofpowdermaster}"
+			var="oldmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldmaster2.powId}" id="iddatatable2">
+			<p:ajax event="rowSelect" update="@form"
+				listener="#{editPowderMasterController.doLoadUI()}"></p:ajax>
+			<f:facet name="header">Existing Powder  Master</f:facet>
+			<p:column>
+				<f:facet name="header">Powder Name</f:facet>
+				<h:outputText value="#{oldmaster2.powName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Powder Description</f:facet>
+				<h:outputText value="#{oldmaster2.powDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:separator />
+		<p:separator />
+
+
+		<p:panel header="Edit Powder Master" style="width:100%;">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header">Initial Details</f:facet>
+				<h:outputText value="Powder Name :" />
+				<p:inputText value="#{editPowderMasterController.powderName}" />
+
+
+				<h:outputText value="Powder Description:" />
+				<p:inputText value="#{editPowderMasterController.description}" />
+   			</p:panelGrid>
+
+			<p:commandButton value="Update All!" ajax="false"  
+				id="idUpdateAll"
+				action="#{editPowderMasterController.doUpdatePowderMaster()}" />
+			<p:commandButton value="Cancel2" action="index.jsf?redirect=true" />
+			
+		</p:panel>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

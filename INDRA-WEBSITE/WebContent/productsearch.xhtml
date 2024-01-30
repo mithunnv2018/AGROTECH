@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Welcome to Indra Agrotech</title>
+	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/layout.css" type="text/css"
+		media="all" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/basic.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="css/basic_ie.css" type="text/css"
+		media="all" />
+	<script type="text/javascript" src="js/jquery-1.5.2.js"></script>
+	<script type="text/javascript" src="js/atooltip.jquery.js"></script>
+	<script type="text/javascript" src="js/kwicks-1.5.1.pack.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/jquery.simplemodal.js"></script>
+	<script type="text/javascript"
+		src="simple-slide-panel_files/myjquery.js"></script>
+	<script type="text/javascript"><!--
+	var page = 0;
+	var linkDiv = 0;
+	//*****************
+	var linkClickId;
+	//****************
+	$(document).ready(function() {
+		$("li").click(function() {
+			if (page == 4) {
+				linkDiv = 3
+			}
+
+			//*****************
+			if(linkClickId!=$(this).attr('id')){
+			if($('#slidingDiv').is(':visible')){
+				$('#slidingDiv').hide();
+			}
+			}
+			//*****************
+		});
+
+		$("#slidingDiv").hide();
+		$(".show_hide").show();
+		$('.show_hide').click(function() {
+		
+			//*****************
+			linkClickId=$(this).parent().parent().parent().attr('id');
+			//*****************
+			/*if(linkClickId=="page_1"){
+			$("#product_item").html("Textile - Indra Burst Series");
+			}
+			if(linkClickId=="page_2"){
+			$("#product_item").html("Paint - Indra Burst Series");
+			}
+			if(linkClickId=="page_3"){
+			$("#product_item").html("Paper - Indra Burst Series");
+			}
+			if(linkClickId=="page_4"){
+			$("#product_item").html("Construction - Indra Burst Series");
+			}
+			*/
+			
+			if(linkClickId=="page_1"){
+				$("#product_item").html("Textile - Indra Burst Series");
+				}
+			page = 3;
+			page++;
+			$("#slidingDiv").slideToggle();
+			$('#close_btn').live('click', function(e) {
+				e.preventDefault();
+				$("#slidingDiv").hide();
+			});
+			$('.profile').live('click', function(e) {
+				e.preventDefault();
+				$('#basic-modal-content').modal();
+			});
+		});
+	});
+
+	//function retrieveProduct(catidparam)
+	//{
+		//retrieveProducts({catid:'1A47'});
+		//retrieveProducts([{name:'catid',value:catidparam}])
+		//alert('hi'+catidparam);
+	//}
+
+	function searchcall2()
+	{
+		var searchtext=document.getElementById("searchbox2").value;
+		//alert("u searched for "+searchtext);
+		//searchtext="name";
+		searchProduct([{im:'aa'}]);
+		searchProduct([{name:'searchtext',value:searchtext}]);
+		 
+		$("#slidingDiv").slideToggle();
+		 
+		
+	}
+
+	function datafromserver(d2)
+	{
+		//alert('hi now '+d2);
+		$("#container").html(d2);
+		 //alert(d2);
+		
+	}
+
+	function showproductdetails(prdid)
+	{
+		
+		showsingleproduct([{name:'productid2',value:prdid}]);
+		$('#basic-modal-content').modal();
+		//alert('hi');
+		//$("#product_name").html(prdid);
+		
+		
+	}
+
+	 
+
+	function displayInId(name,description,image3,extradiv)
+	{
+		$("#productnamex").html(name);
+		$("#product_name_text").html(extradiv);
+		$("#product_text_image").attr('src',image3);
+		
+	}
+	function requestparsing(param2){
+		var url = window.location.toString();
+		 //get the parameters
+		 url.match(/\?(.+)$/);
+		 var params = RegExp.$1;
+		 // split up the query string and store in an
+		 // associative array
+		 var params = params.split("&");
+		 var queryStringList = {};
+		 
+		 for(var i=0;i<params.length;i++)
+		 {
+		 	var tmp = params[i].split("=");
+		 	queryStringList[tmp[0]] = unescape(tmp[1]);
+		 }
+		 for(var i in queryStringList)
+		 {	 
+			 if(i==param2)
+			 {	
+					return queryStringList[i];
+			 }	
+			 //document.write(i+" = "+queryStringList[i]+"<br/>");
+		 }	
+		 return "";
+	}
+	function onLoad()
+	{
+		var searchtext="";
+		searchtext= requestparsing("query");
+		//window.location.href
+		if(searchtext.trim()=="")
+		{
+			//alert("empty");
+			return;
+		} 
+		searchProduct([{im:'aa'}]);
+		searchProduct([{name:'searchtext',value:searchtext}]);
+		 
+		$("#slidingDiv").slideToggle();
+		 
+	}
+	$("#searchbox2").keypress(function ( e ) {
+		 e.preventDefault();
+		 searchcall2();
+		 alert("call search");
+	     var key = window.event ? e.keyCode : e.which;
+	     alert("event is "+key);
+	     if (key == '13') {
+				alert("really called search");
+		          searchcall2();
+	     }
+ 	}); 
+--></script>
+	<style type="text/css">
+.style1 {
+	color: #99C339
+}
+</style>
+
+	<!-- More scripts @ www.hscripts.com  -->
+
+	<script type="text/javascript" language="javascript">
+<!-- Declare the array and store the values according to ur usage -->
+//<![CDATA[
+var suggestions = new Array("bank","bold");
+ 
+var outp;
+var oldins;
+var posi = -1;
+var words = new Array();
+var input;
+var key;
+function setVisible(visi)
+{
+	
+  var x = document.getElementById("shadow");
+  var t = document.getElementsByName("query")[0];
+  x.style.position = 'absolute';
+  x.style.top = (findPosY(t)+3)+"px";
+  x.style.left = (findPosX(t)+2)+"px";
+  x.style.visibility = visi;
+}
+function init(autotext2)
+{
+	  var a=autotext2.split(",");
+	  var len2=a.length;
+	  //alert("Length= "+len2);
+	  for (var i2=0; i2 < len2; i2++)
+	  {
+		  suggestions[i2]=a[i2].trim();	
+	  }	 
+	  
+	
+  outp = document.getElementById("output");
+  window.setInterval("lookAt()", 100);
+  setVisible("hidden");
+  document.onkeydown = keygetter; //needed for Opera...
+  document.onkeyup = keyHandler;
+}
+function findPosX(obj)
+{
+  var curleft = 0;
+  if (obj.offsetParent)
+  {
+    while (obj.offsetParent)
+    {
+      curleft += obj.offsetLeft;
+      obj = obj.offsetParent;
+    }
+   }
+  else if (obj.x)
+    curleft += obj.x;
+        return curleft;
+}
+function findPosY(obj)
+{
+  var curtop = 0;
+  if (obj.offsetParent)
+  {
+    curtop += obj.offsetHeight;
+    while (obj.offsetParent)
+    {
+      curtop += obj.offsetTop;
+      obj = obj.offsetParent;
+     }
+   }
+   else if (obj.y)
+   {
+     curtop += obj.y;
+     curtop += obj.height;
+   }
+   return curtop;
+}
+function lookAt()
+{
+   var ins = document.getElementsByName("query")[0].value;
+   if (oldins == ins)
+      return;
+   else if (posi > -1);
+   else if (ins.length > 0)
+   {
+     words = getWord(ins);
+     if (words.length > 0)
+     {
+        clearOutput();
+        for (var i=0;i < words.length; ++i)
+             addWord (words[i]);
+        setVisible("visible");
+        input = document.getElementsByName("query")[0].value;
+     }
+     else
+     {
+        setVisible("hidden");
+        posi = -1;
+     }
+   }
+   else
+   {
+    setVisible("hidden");
+    posi = -1;
+   }
+   oldins = ins;
+}
+function addWord(word)
+{
+  var sp = document.createElement("div");
+  sp.appendChild(document.createTextNode(word));
+  sp.onmouseover = mouseHandler;
+  sp.onmouseout = mouseHandlerOut;
+  sp.onclick = mouseClick;
+  outp.appendChild(sp);
+}
+function clearOutput()
+{
+  while (outp.hasChildNodes())
+  {
+    noten=outp.firstChild;
+    outp.removeChild(noten);
+  }
+   posi = -1;
+}
+function getWord(beginning)
+{
+  var words = new Array();
+  for (var i=0;i < suggestions.length; ++i)
+   {
+    var j = -1;
+    var correct = 1;
+    while (correct == 1 && ++j < beginning.length)
+    {
+     if (suggestions[i].charAt(j) != beginning.charAt(j))
+         correct = 0;
+    }
+    if (correct == 1)
+       words[words.length] = suggestions[i];
+  }
+    return words;
+  
+}       
+function setColor (_posi, _color, _forg)
+{
+   outp.childNodes[_posi].style.background = _color;
+   outp.childNodes[_posi].style.color = _forg;
+}
+function keygetter(event)
+{
+  if (!event && window.event) 
+      event = window.event;
+  if (event)
+      key = event.keyCode;
+  else
+      key = event.which;
+}
+function keyHandler(event)
+{
+  if (document.getElementById("shadow").style.visibility == "visible")
+  {
+     var textfield = document.getElementsByName("query")[0];
+     if (key == 40)//key down
+     { 
+        if (words.length > 0 && posi <= words.length-1)
+        {
+          if (posi >=0)
+            setColor(posi, "#fff", "black");
+          else 
+             input = textfield.value;
+             setColor(++posi, "blue", "white");
+             textfield.value = outp.childNodes[posi].firstChild.nodeValue;
+        }
+      }
+      else if (key == 38)
+      { //Key up
+        if (words.length > 0 && posi >= 0)
+         {
+           if (posi >=1)
+           {
+              setColor(posi, "#fff", "black");
+              setColor(--posi, "blue", "white");
+              textfield.value = outp.childNodes[posi].firstChild.nodeValue;
+           }
+           else
+           {
+              setColor(posi, "#fff", "black");
+              textfield.value = input;
+              textfield.focus();
+              posi--;
+           }
+         }
+        }
+         else if (key == 27)
+         { // Esc
+            textfield.value = input;
+            setVisible("hidden");
+            posi = -1;
+            oldins = input;
+          }
+          else if (key == 8) 
+          { // Backspace
+            posi = -1;
+            oldins=-1;
+          } 
+              }
+   }
+    var mouseHandler=function()
+    {
+      for (var i=0; i < words.length; ++i)
+        setColor (i, "white", "black");
+      this.style.background = "blue";
+      this.style.color= "white";
+     }
+     var mouseHandlerOut=function()
+     {
+       this.style.background = "white";
+       this.style.color= "black";
+     }
+     var mouseClick=function()
+     {
+        document.getElementsByName("query")[0].value = this.firstChild.nodeValue;
+        setVisible("hidden");
+        posi = -1;
+        oldins = this.firstChild.nodeValue;
+     }
+//]]>    
+</script>
+	<style type="text/css">
+<!--
+.style1 {
+	color: #99C339
+}
+
+.output {
+	font-family: Arial;
+	font-size: 10pt;
+	color: black;
+	padding-left: 3px;
+	padding-top: 3px;
+	border: 1px solid #000000;
+	width: 160px;
+	background: #fff;
+}
+
+.shadow {
+	width: 162px;
+	position: relative;
+	top: 2px;
+	left: 2px;
+	background: #555;
+}
+
+.shadow div {
+	position: relative;
+	top: -2px;
+	left: -2px;
+}
+-->
+</style>
+</h:head>
+
+<h:body onload="onLoad();init('#{autoFeature.doAutoComplete()}');">
+	<h:form prependId="false">
+		<p:remoteCommand id="abccde" name="searchProduct"  
+			actionListener="#{myBean2.doSearchProducts}" global="false" />
+		<p:remoteCommand id="xyz234" name="showsingleproduct"
+			actionListener="#{myBean2.loadProductOnly}" global="false" />
+		<div id="wrapper">
+			<div id="upperstrip"></div>
+			<div id="logo">
+				<div id="header">
+					<div id="menu">
+						<ul>
+							<li><a href="index.jsf">Home |</a></li>
+							<li><a href="about.jsf">About us |</a></li>
+							<li><a href="product.jsf">Products |
+							</a></li>
+							 
+							<li><a href="contact.jsf">Contact us |</a></li>
+							<li><a href="faq.jsf">FAQ</a></li>
+						</ul>
+					</div>
+					<!-- end #menu -->
+					<div id="search">
+						 <form action="df"></form> 
+						<form action="productsearch.jsf" name="search23" method="get">
+							<input type="submit" value=" " class="submit" />
+							<input type="text" name="query" class="text" value="Search..." onfocus="this.value='';"/>
+							
+						</form>
+						<div class="shadow" id="shadow">
+						<div class="output" id="output"></div>
+					</div>
+					</div>
+					<!-- end #search -->
+				</div>
+				<!-- end #header -->
+			</div>
+			<!-- end #logo -->
+
+
+			<div id="banner_product"></div>
+			<!-- end of banner -->
+			<!--
+
+			<div id="product">
+				<h1>Product Showcase</h1>
+				<div id="pro_content">
+					<div class="cont_bot_left"></div>
+					<div class="cont_bot_right"></div>
+					<div class="cont_top_left"></div>
+					<div class="cont_top_right"></div>
+					<div class="inner">
+						<div class="kwiks_wrap">
+							<ul class="kwicks horizontal">
+								<li id="page_1">
+									<div class="text"></div>
+									<div id="product_textile">
+										<h1>Textile</h1>
+										<p></p>
+										<h2 class="slide">
+											<a href="#" class="show_hide" id="texttile"
+												onclick="retrieveProduct('1A47');">more detail click
+												here</a>
+
+										</h2>
+										<div style="display: block;" id="panel">
+											 you can put content here 
+										</div>
+									</div>
+									<div class="cont">
+										<p class="pad_top1"></p>
+									</div></li>
+
+								<li id="page_2">
+									<div class="text"></div>
+									<div id="product_paint">
+										<h1>Paint</h1>
+										<p></p>
+										<h2 class="slide">
+											<a href="#" class="show_hide" id="paint" onclick="retrieveProduct('1A48');">more details
+												click here</a>
+										</h2>
+									</div>
+									<div class="cont">
+										<p class="pad_top1"></p>
+									</div></li>
+
+								<li id="page_3">
+									<div class="text"></div>
+									<div id="product_paper">
+										<h1>Paper</h1>
+										<p></p>
+										<h2 class="slide">
+											<a href="#" class="show_hide" id="paper" onclick="retrieveProduct('1A63');">more details
+												click here</a>
+										</h2>
+									</div>
+									<div class="cont">
+										<p class="pad_top1"></p>
+									</div></li>
+
+								<li id="page_4">
+									<div class="text"></div>
+									<div id="product_construction">
+										<h1>Construction</h1>
+										<p></p>
+										<h2 class="slide">
+											<a href="#" class="show_hide" id="construction" onclick="retrieveProduct('1A64');">more
+												details click here</a>
+										</h2>
+									</div>
+									<div class="cont">
+										<p class="pad_top1"></p>
+									</div></li>
+							</ul>
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+
+
+				 / content 
+			</div>
+
+			-->
+
+
+
+
+
+			<div id="lower_white">
+				<div id="search2"
+					style="padding-left: 20px; padding-top: 10px; position: relative;">
+					<fieldset>
+
+						<input type="button" onclick="searchcall2();"
+							style="float: left; border: 0; width: 23px; height: 22px; padding-top: 0px; background-image: url(images/search.jpg); background-repeat: no-repeat;"
+							name="search2" value=" " /> 
+							<input type="text" id="searchbox2" onkeypress="searchcall2();"
+							style="width: 150px; height: 20px; border: 1px solid #ddd; padding: 0px; float: left; color: #888;"
+							name="query2" value="Search...." onfocus="this.value='';" />
+					</fieldset>
+				</div>
+				<br />
+				<!-- Product  developet-->
+				<div id="slidingDivsearch">
+
+
+
+					<div id="container" />
+
+				</div>
+				<br />
+				<!-- start of map -->
+				<!--
+					
+					<ui:repeat var="crumb" value="#{myBean2.listofbreadcrumb}">
+					<h:outputText value="#{crumb}" />
+						<div id="product_item2">Prod dump</div>
+
+
+
+						<div id="container">
+
+							<div id="product_item2">Prod dump</div>
+							<ui:repeat var="prod" value="#{myBean2.mainmap[crumb]}">
+								<div class="profile2">
+
+
+									<a href="#" title="Person 1" class="trigger"> <img
+										src="blank-avatar.gif" alt="Profile Image" /> <br /> <span
+										class="name">Hi #{prod.productName}</span> </a>
+
+								</div>
+							</ui:repeat>
+						<div class="clear"></div>
+
+		               </div>
+					</ui:repeat>
+					 end of map 
+
+					<div class="profile">
+						 Hidden on load by CSS 
+						 Show the hidden div on hover 
+						<a href="#" title="Person 1" class="trigger"> <img
+							src="blank-avatar.gif" alt="Profile Image" /> <br /> <span
+							class="name">Product 12</span> </a>
+					</div>
+
+					<div class="profile">
+						 Hidden on load by CSS 
+						 Show the hidden div on hover 
+						<a href="#" title="Person 2" class="trigger"> <img
+							src="blank-avatar.gif" alt="Profile Image" /> <br /> <span
+							class="name">Product 543</span> </a>
+					</div>
+
+					<div class="profile">
+						 Hidden on load by CSS 
+						 Show the hidden div on hover 
+						<a href="#" title="Person 3" class="trigger"> <img
+							src="blank-avatar.gif" alt="Profile Image" /> <br /> <span
+							class="name">Product</span> </a>
+					</div>
+
+					<div class="profile">
+						 Hidden on load by CSS 
+						 Show the hidden div on hover 
+						<a href="#" title="Person 4" class="trigger"> <img
+							src="blank-avatar.gif" alt="Profile Image" /> <br /> <span
+							class="name">Product</span> </a>
+					</div>
+
+					 A clear div to sort out our floats 
+					<div class="clear"></div>
+
+				</div>
+			</div>
+
+
+			 end of product
+
+
+			-->
+				<div id="basic-modal-content">
+
+
+					<div id="product_name">
+						<div align="center"
+							style="width: 80px; margin-top: 18px; float: right; margin-right: 30px">
+							<h:commandLink actionListener="#{myBean2.PDF}" value="">
+								<h:graphicImage value="/images/pdf_icon.png" />
+								<div id="printtopdf"
+									style="font-size: 10pt; font-weight: bold; color: black">Print
+									to PDF</div>
+							</h:commandLink>
+						</div>
+						<div id="productnamex" align="left">  </div>
+
+					</div>
+
+					<div id="image_content" style="width: 700px; float: left;"
+						align="center">
+						<img id="product_text_image" src="images/indra_burst.jpg" />
+						<div id="inner_image_div"></div>
+					</div>
+
+
+
+					<div id="product_name_text" align="justify">
+
+						 
+					</div>
+					<br />
+					<div id="inner_image_divnew"></div>
+
+				</div>
+			</div>
+			<div id="footer">
+				<div id="copyright">IndraAgrotech &#169; 2012 - Present</div>
+				<!-- end of copyright-->
+
+				<div id="menu_bottom">
+					<ul>
+						<li><a href="index.jsf">Home |</a>
+						</li>
+						<li><a href="about.jsf">About Us |</a></li>
+						<li><a href="product.jsf">Products |</a></li>
+						 
+						<li><a href="contact.jsf">Contact Us |</a></li>
+						<li><a href="faq.jsf">FAQ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</h:form>
+</h:body>
+</html>

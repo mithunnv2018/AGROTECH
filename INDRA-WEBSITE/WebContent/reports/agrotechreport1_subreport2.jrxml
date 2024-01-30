@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agrotechreport1_subreport2" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MITHIMAGE2" class="java.lang.String"/>
+	<field name="field1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="103">
+			<staticText>
+				<reportElement x="14" y="21" width="409" height="25"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Good NEws]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="14" y="68" width="409" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{MITHIMAGE2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

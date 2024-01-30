@@ -1,0 +1,3 @@
+TO REMEMBER ABOUT AGROTECH WEBAPP --
+
+1) REM to add lazy="false" in TBlCategortMaster.hbm.xml & TblProductMaster.hbm.xml

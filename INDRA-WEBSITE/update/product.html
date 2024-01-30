@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to Indra Agrotech</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/basic.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/basic_ie.css" type="text/css"
+	media="all"><script type="text/javascript"
+	src="js/jquery-1.5.2.js"></script> <script type="text/javascript"
+	src="js/atooltip.jquery.js"></script> <script type="text/javascript"
+	src="js/kwicks-1.5.1.pack.js"></script> <script type="text/javascript"
+	src="js/script.js"></script> <script type="text/javascript"
+	src="js/jquery.simplemodal.js"></script> <script type="text/javascript"
+	src="simple-slide-panel_files/myjquery.js"></script> <script
+	type="text/javascript"><!--
+	var page = 0;
+	var linkDiv = 0;
+	//*****************
+	var linkClickId;
+	//****************
+	$(document).ready(function() {
+		$("li").click(function() {
+			if (page == 4) {
+				linkDiv = 3
+			}
+
+			//*****************
+			if(linkClickId!=$(this).attr('id')){
+			if($('#slidingDiv').is(':visible')){
+				$('#slidingDiv').hide();
+			}
+			}
+			//*****************
+		});
+
+		$("#slidingDiv").hide();
+		$(".show_hide").show();
+		$('.show_hide').click(function() {
+		
+			//*****************
+			linkClickId=$(this).parent().parent().parent().attr('id');
+			//*****************
+			if(linkClickId=="page_1"){
+			$("#product_item").html("TEXTILE - INDRA BURST SERIES");
+			
+			}
+			if(linkClickId=="page_2"){
+			$("#product_item").html("PAINT - INDRA BURST SERIES");
+			
+			}
+			if(linkClickId=="page_3"){
+			$("#product_item").html("PAPER - INDRA BURST SERIES");
+			
+			}
+			if(linkClickId=="page_4"){
+			$("#product_item").html("CONSTRUCTION - INDRA BURST SERIES");
+			
+			}
+			
+			page = 3;
+			page++;
+			$("#slidingDiv").slideToggle();
+			$('#close_btn').live('click', function(e) {
+				e.preventDefault();
+				$("#slidingDiv").hide();
+			});
+			$('.profile').live('click', function(e) {
+				e.preventDefault();
+				$('#basic-modal-content').modal();
+			});
+		});
+	});
+</script>
+<style type="text/css">
+<!--
+.style1 {
+	color: #99C339
+}
+-->
+</style>
+</head>
+<body>
+<div id="wrapper">
+<div id="upperstrip"></div>
+<div id="logo">
+<div id="header">
+<div id="menu">
+<ul>
+	<li><a href="index.html">Home</a></li>
+	<li><a href="about.html">About us</a></li>
+	<li class="selected"><a href="product.html">Products</a></li>
+	<li><a href="download.html">Download</a></li>
+	<li><a href="contact.html">Contact us</a></li>
+	<li><a href="faq.html">FAQ</a></li>
+</ul>
+</div>
+<!-- end #menu -->
+<div id="search">
+<form method="get" action="">
+<fieldset><input type="submit" class="submit" name="search"
+	value="" /> <input type="text" class="text" name="query"
+	value="Search..." onfocus="this.value='';"
+	onblur="this.value='Search...'" /></fieldset>
+</form>
+</div>
+<!-- end #search --></div>
+<!-- end #header --></div>
+<!-- end #logo -->
+
+
+<div id="banner_product"></div>
+<!-- end of banner -->
+
+<div id="product">
+<h1>PRODUCT SHOWCASE</h1>
+<div id="pro_content">
+<div class="cont_bot_left"></div>
+<div class="cont_bot_right"></div>
+<div class="cont_top_left"></div>
+<div class="cont_top_right"></div>
+<div class="inner">
+<div class="kwiks_wrap">
+<ul class="kwicks horizontal">
+	<li id="page_1">
+	<div class="text"></div>
+	<div id="product_textile">
+	<h1>TEXTILE</h1>
+	<p></p>
+	<h2 class="slide"><a href="#" class="show_hide" id="texttile" >more detail click here</a></h2>
+	<div style="display: block;" id="panel"><!-- you can put content here -->
+	</div>
+	</div>
+	
+	</li>
+
+	<li id="page_2">
+	<div class="text"></div>
+	<div id="product_paint">
+	<h1>PAINT</h1>
+	<p></p>
+	<h2 class="slide"><a href="#" class="show_hide" id="paint">more details click here</a></h2>
+	</div>
+	
+	</li>
+
+	<li id="page_3">
+	<div class="text"></div>
+	<div id="product_paper">
+	<h1>PAPER</h1>
+	<p></p>
+	<h2  class="slide"><a href="#" class="show_hide" id="paper">more details click here</a></h2>
+	</div>
+	
+	</li>
+
+	<li id="page_4">
+	<div class="text"></div>
+	<div id="product_construction">
+	<h1>CONSTRUCTION</h1>
+	<p></p>
+	<h2  class="slide"><a href="#" class="show_hide"  id="construction">more details click here</a></h2>
+	</div>
+	
+	</li>
+</ul>
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+<!-- / content --></div>
+
+<div id="lower_white"><!-- Product  developet-->
+<div id="slidingDiv">
+
+<div id="container">
+
+<div id ="my_contents">
+    <div id="product_item">Texttile  Product </div>
+    <div id="close_btn">
+      <img src="images/x.png" width="25" height="29" />
+      </div>
+</div>
+
+<div id ="details_content">
+<div class="profile"><!-- Hidden on load by CSS --> <!-- Show the hidden div on hover -->
+<a href="#" title="Person 1" class="trigger"> 
+<div class="avtar_image">
+<img src="blank-avatar.gif" alt="Profile Image" /> 
+</div>
+<br />
+<span class="name">Indra Burst 832/A_1</span> </a></div>
+
+
+<div class="profile"><!-- Hidden on load by CSS --> <!-- Show the hidden div on hover -->
+<a href="#" title="Person 1" class="trigger"> 
+<div class="avtar_image">
+<img src="blank-avatar.gif" alt="Profile Image" /> 
+</div>
+<br />
+<span class="name">Indra Burst 832/A_2</span> </a></div>
+
+<div class="profile"><!-- Hidden on load by CSS --> <!-- Show the hidden div on hover -->
+<a href="#" title="Person 1" class="trigger"> 
+<div class="avtar_image">
+<img src="blank-avatar.gif" alt="Profile Image" /> 
+</div>
+<br />
+<span class="name">Indra Burst 832/A_3</span> </a></div>
+
+<div class="profile"><!-- Hidden on load by CSS --> <!-- Show the hidden div on hover -->
+<a href="#" title="Person 1" class="trigger"> 
+<div class="avtar_image">
+<img src="blank-avatar.gif" alt="Profile Image" /> 
+</div>
+<br />
+<span class="name">Indra Burst 832/A_4</span> </a></div>
+</div>
+<!-- A clear div to sort out our floats -->
+
+
+</div>
+</div>
+
+
+<!-- end of product-->
+
+
+<div id="basic-modal-content">
+
+
+<div id="product_name">INDRA BURST 832/A</div>
+
+<div id="image_content" style="width:300px; float:left">
+<img  id="product_text_image" src="images/indra_burst.jpg"/>
+<div id="inner_image_div">Indra Agrotech private limited had its beginnings in 1958 was set up </div>
+</div>
+
+
+
+<div id="product_name_text" align="justify">Indra Agrotech private limited had its beginnings in 1958 was set up in Financial and Technica collaboration between Merchant Family & Cesalpinia Group of ItalyIn 1971 the American Company Hercules Incorporated acquired the Cesalpinia Shareholdings in IGI. In 1987 Hercules & Henkel decided to merge their water soluble polymers divisions into a new co rporation, Aqualon. At this time IGI became 100%
+Indian Owned Company. <br/>
+
+Indra Agrotech private limited had its beginnings in 1958 was set up in Financial and Technica collaboration between Merchant Family & Cesalpinia Group of ItalyIn 1971 the American Company Hercules Incorporated acquired the Cesalpinia Shareholdings in IGI. In 1987 Hercules & Henkel decided to merge their water soluble polymers divisions into a new co rporation, Aqualon. At this time IGI became 100%
+Indian Owned Company.  <br/>
+
+Indra Agrotech private limited had its beginnings in 1958 was set up in Financial and Technica collaboration between Merchant Family & Cesalpinia Group of ItalyIn 1971 the American Company Hercules Incorporated acquired the Cesalpinia Shareholdings in IGI. In 1987 Hercules & Henkel decided to merge their water soluble polymers divisions into a new co rporation, Aqualon. At this time IGI became 100%
+Indian Owned Company. </div>
+
+</div>
+
+</div>
+<div id="footer">
+<div id="copyright">indraagrotech @ 2012</div>
+<!-- end of copyright-->
+
+<div id="menu_bottom">
+<ul>
+	<li><a href="about.html">Home</a><a href="index.html">|</a></li>
+	<li><a href="about.html">About Us |</a></li>
+	<li><a href="product.html">Products |</a></li>
+	<li><a href="download.html">Download |</a></li>
+	<li><a href="contact.html">Contact Us |</a></li>
+	<li><a href="faq.html">FAQ</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+</body>
+</html>

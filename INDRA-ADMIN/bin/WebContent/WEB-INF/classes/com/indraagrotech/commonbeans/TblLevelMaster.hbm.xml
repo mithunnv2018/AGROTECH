@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16 Nov, 2012 7:11:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.indraagrotech.commonbeans.TblLevelMaster" table="tbl_level_master" >
+        <id name="levelId" type="java.lang.Integer">
+            <column name="level_id" />
+            <generator class="identity" />
+        </id>
+        <property name="levelChar" type="string">
+            <column name="level_char" length="45" not-null="true" />
+        </property>
+        <property name="levelInnumber" type="int">
+            <column name="level_innumber" not-null="true" />
+        </property>
+        <property name="levelIdTag" type="int">
+            <column name="level_id_tag" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

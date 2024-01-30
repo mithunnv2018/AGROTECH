@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+.output{background-color: menu;
+	color: Lime;
+	font-size: 8px;
+	font-weight: bold  }
+	
+.savex {
+background-image: url(‘/images/save-icon-green.gif’);
+}
+
+.updatex {
+background-image: url(‘WebContent/images/save-icon-green.gif’);
+}

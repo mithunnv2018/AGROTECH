@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl autoUpdate="true" />
+
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+
+
+
+		<p:panel header="" style="width:100%;">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header"><div align="left">Sub Category Details</div></f:facet>
+
+				<h:outputText value="Sub Category Name:" />
+				<h:inputText value="#{subCategoryMasterController.categoryName}" />
+
+
+				<h:outputText value="Sub Category Description:" />
+				<h:inputText value="#{subCategoryMasterController.description}" />
+
+				<h:outputText value="Select Category:" />
+				<p:selectOneMenu
+					value="#{subCategoryMasterController.primarykeyCategorMaster}"
+					effect="fade">
+					<f:selectItem itemLabel="--Select--" itemValue="" />
+					<f:selectItems
+						value="#{subCategoryMasterController.listofoldcategorymaster}"
+						var="course" itemLabel="#{course.catName}"
+						itemValue="#{course.catId}" />
+				</p:selectOneMenu>
+
+
+			</p:panelGrid>
+
+			<p:commandButton value="Save" id="idSaveAll"
+				action="#{subCategoryMasterController.doSaveCategoryMaster()}" />
+			<p:commandButton value="Cancel" action="index.jsf?redirect=true" />
+
+		</p:panel>
+
+		<p:dataTable rendered="true" rows="20"
+			value="#{subCategoryMasterController.listofoldcategorymaster}"
+			var="oldtypingmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldtypingmaster2.catId}">
+			<f:facet name="header"><div align="left">Existing Sub Category</div></f:facet>
+			<p:column>
+				<f:facet name="header"><div align="left">Sub Category Name</div></f:facet>
+				<h:outputText value="#{oldtypingmaster2.catName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header"><div align="left">Sub Category Description</div></f:facet>
+				<h:outputText value="#{oldtypingmaster2.catDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

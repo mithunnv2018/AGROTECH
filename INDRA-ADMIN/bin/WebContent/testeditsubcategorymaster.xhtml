@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+
+</h:head>
+<h:body>
+
+	<h:form prependId="true">
+
+		<p:growl autoUpdate="true" />
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+		<div align="left">
+			<p:commandButton value="Edit" rendered="#{editSubCategoryMasterController.show}"
+				actionListener="#{editSubCategoryMasterController.doLoadUI()}"
+				update="@form" />
+		</div>
+
+		<p:dataTable rendered="#{editSubCategoryMasterController.show}"
+			rows="20" selectionMode="single"
+			selection="#{editSubCategoryMasterController.selectedtblcategorymaster}"
+			value="#{editSubCategoryMasterController.listofcategorymaster}"
+			var="oldmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldmaster2.catId}" id="iddatatable2">
+
+			<f:facet name="header">
+				<div align="left">Existing Sub Category</div>
+			</f:facet>
+			<p:column selectionMode="single" />
+			<p:column>
+				<f:facet name="header">
+					<div align="left">Sub Category Name</div>
+				</f:facet>
+				<h:outputText value="#{oldmaster2.catName}"
+					title="#{oldmaster2.catId}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<div align="left">Sub Category Description</div>
+				</f:facet>
+				<h:outputText value="#{oldmaster2.catDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+		<p:panel header="" style="width:100%;"
+			rendered="#{editSubCategoryMasterController.show==false}">
+
+			<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+				style="width:100%;">
+				<f:facet name="header">
+					<div align="left">Sub Category Details</div>
+				</f:facet>
+				<h:outputText value="Sub Category Name:" />
+				<h:inputText value="#{editSubCategoryMasterController.categoryName}" />
+
+
+				<h:outputText value="Sub Category Description:" />
+				<h:inputText value="#{editSubCategoryMasterController.description}" />
+
+				<h:outputText value="Select Category:" />
+				<p:selectOneMenu
+					value="#{editSubCategoryMasterController.primarykeyCategorMaster}"
+					effect="fade" disabled="true">
+					<f:selectItem itemLabel="--Main--" itemValue="0" />
+					<f:selectItems
+						value="#{editSubCategoryMasterController.listofcategorymaster}"
+						var="course" itemLabel="#{course.catName}"
+						itemValue="#{course.catId}"
+						itemDescription="#{course.catDesc} #{course.catId}" />
+				</p:selectOneMenu>
+
+
+			</p:panelGrid>
+
+			<div align="right">
+				<p:commandButton value="Update" ajax="false" id="idUpdateAll"
+					action="#{editSubCategoryMasterController.doUpdateCategoryMaster()}" />
+				<p:commandButton value="Cancel" action="index.jsf?redirect=true" />
+			</div>
+		</p:panel>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

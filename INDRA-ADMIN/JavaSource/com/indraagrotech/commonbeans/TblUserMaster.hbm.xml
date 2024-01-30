@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21 Nov, 2012 11:40:22 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.indraagrotech.commonbeans.TblUserMaster" table="tbl_user_master" >
+        <id name="UId" type="java.lang.Integer">
+            <column name="`U-ID`" />
+            <generator class="identity" />
+        </id>
+        <property name="UFullName" type="string">
+            <column name="U_FullName" length="45" not-null="true" />
+        </property>
+        <property name="UUserName" type="string">
+            <column name="U_UserName" length="45" not-null="true" />
+        </property>
+        <property name="UPass" type="string">
+            <column name="U_Pass" length="45" not-null="true" />
+        </property>
+        <property name="UTag" type="int">
+            <column name="U_Tag" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

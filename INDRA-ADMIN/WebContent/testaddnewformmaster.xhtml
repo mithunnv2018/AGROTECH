@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl autoUpdate="true" />
+
+		<p:remoteCommand name="chekcredentials2addnewppttrn" autoRun="true"
+			actionListener="#{commonParams2.checkCredentialsForLoggedOut('userMaster','/INDRAAGROTECH/loginpage.jsf')}" />
+
+
+
+
+
+
+		<p:panelGrid columns="2" cellpadding="2" id="idpanelgrid3"
+			style="width:100%;">
+			<f:facet name="header">
+				<div align="left">Property Details</div>
+			</f:facet>
+
+			<h:outputText value="Property Name:" />
+			<h:inputText value="#{formMasterController.formName}" />
+
+
+			<h:outputText value="Property Description:" />
+			<h:inputText value="#{formMasterController.description}" />
+
+
+
+		</p:panelGrid>
+
+		<div align="right">
+			<p:commandButton value="Save" id="idSaveAll" ajax="true"
+				update="@form" action="#{formMasterController.doSaveFormMaster()}" />
+			<p:commandButton value="Cancel" update="@form" ajax="true"
+				action="addnewformmaster.jsf?redirect=true" />
+		</div>
+		<p:dataTable rendered="true" rows="20"
+			value="#{formMasterController.listofoldformmaster}"
+			var="oldtypingmaster2" paginator="true" style="width:100%;"
+			rowKey="#{oldtypingmaster2.formId}">
+			<f:facet name="header">
+				<div align="left">Existing Property</div>
+			</f:facet>
+			<p:column>
+				<f:facet name="header">
+					<div align="left">Property Name</div>
+				</f:facet>
+				<h:outputText value="#{oldtypingmaster2.formName}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<div align="left">Property Description</div>
+				</f:facet>
+				<h:outputText value="#{oldtypingmaster2.formDesc}" />
+			</p:column>
+
+		</p:dataTable>
+
+
+	</h:form>
+
+</h:body>
+
+</html>

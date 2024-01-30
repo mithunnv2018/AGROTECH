@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+
+	<style type="text/css">
+</style>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:growl autoUpdate="true" />
+
+		<h6>Welcome to Indra Agro Tech Product Showcase page</h6>
+
+		<p:accordionPanel >
+			<p:tab title="Textile"  >
+				<h:panelGrid columns="2">
+					<p:graphicImage value="/images/product_construction.jpg" />
+					<p:panelGrid columns="1">
+						<h:outputText value="Textile" />
+
+						<p:commandLink update="@form"
+							actionListener="#{demoProduct.doShowProduct()}"
+							value="more detail click here">
+						</p:commandLink>
+
+					</p:panelGrid>
+					 
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Paint" titleStyle="background-color:red">
+				<h:panelGrid columns="2">
+					<p:graphicImage value="/images/product_construction.jpg" />
+					<h:outputText value="Paint" />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Paper" titleStyle="background-color:green">
+				<h:panelGrid columns="2">
+					<p:graphicImage value="/images/product_construction.jpg" />
+					<h:outputText value="Paper" />
+				</h:panelGrid>
+			</p:tab>
+			<p:tab title="Construction" titleStyle="background-color:orange">
+				<h:panelGrid columns="2">
+
+					<p:graphicImage value="/images/product_construction.jpg" />
+					<h:outputText value="Construction" />
+				</h:panelGrid>
+			</p:tab>
+
+		</p:accordionPanel>
+		<p:carousel itemStyle="width:300px"
+			rendered="#{demoProduct.showproduct}"
+			value="#{demoProduct.listofproducts}" var="prod" id="idcarousel">
+
+
+			<p:graphicImage value="/images/blank-avatar.gif" />
+			<h:outputText value="#{prod.productName}" />
+
+
+		</p:carousel>
+
+		<p:notificationBar widgetVar="idnotify" effect="slide"
+			position="bottom">
+			<p:carousel itemStyle="width:300px"
+				value="#{demoProduct.listofproducts}" var="prod">
+
+
+				<p:graphicImage value="/images/blank-avatar.gif" />
+				<h:outputText value="#{prod.productName}" />
+
+
+			</p:carousel>
+
+
+		</p:notificationBar>
+
+
+
+	</h:form>
+
+</h:body>
+
+</html>

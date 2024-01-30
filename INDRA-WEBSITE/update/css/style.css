@@ -1,0 +1,320 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block}
+mark, rp, rt, ruby, summary, time {display:inline}
+/* Left & Right alignment */
+.left 
+{
+float:left
+}
+.right 
+{
+float:right
+}
+
+/* Global properties */
+
+
+.ic, .ic a 
+{
+border:0;
+float:right;
+background:#999999;
+color:#f00;
+width:50%;
+line-height:10px;
+font-size:10px;
+margin:-220% 0 0 0;
+overflow:hidden;
+padding:0
+}
+
+
+/* Global Structure */
+.main 
+{
+	margin:0 auto;
+	width:900px;
+	color: #000000;
+}
+
+
+
+/*  main layout  */
+a 
+{
+color:#558f0b;
+text-decoration:none;
+outline:none
+}
+
+a:hover 
+{
+text-decoration:none
+}
+
+
+/*  header  */
+
+
+
+#menu {}
+#menu li {}
+#menu li a{}
+#menu li a:hover, #menu #menu_active a {}
+/*  content  */
+
+#pro_content
+{
+position:relative;
+padding-top:73px;
+padding-left:144px;
+}
+
+.inner 
+{
+	position:relative;
+	z-index:10;
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 3px;
+}
+
+.kwiks_wrap 
+{
+height:200px;
+}
+
+.kwicks
+{
+list-style:none;
+margin:0;	
+overflow:hidden;
+width:710px !important;	
+height:200px;
+position:relative;
+}
+
+.kwicks > li 
+{
+width:176px;
+height:200px;
+float:left;
+overflow:hidden;
+padding:0;
+cursor:pointer;
+position:relative;
+cursor:auto
+}
+
+.text 
+{
+float:left;
+width:60px;
+height:200px;
+cursor:pointer;
+}
+
+#page_1 .text 
+{
+background:url(../images/textile.jpg) 0 0 no-repeat;
+}
+
+#page_2 .text 
+{
+background:url(../images/paint.jpg) 0 0 no-repeat;
+}
+
+#page_3 .text 
+{
+background:url(../images/paper.jpg) 0 0 no-repeat;
+}
+
+#page_4 .text 
+{
+background:url(../images/construction.jpg) 0 0 no-repeat;
+}
+
+
+#page_1.active .text, #page_1:hover .text 
+{
+background:url(../images/textile.jpg) 0 0 no-repeat;
+}
+
+#page_2.active .text, #page_2:hover .text 
+{
+background:url(../images/paint.jpg) 0 0 no-repeat;
+}
+
+#page_3.active .text, #page_3:hover .text 
+{
+background:url(../images/paper.jpg) 0 0 no-repeat;
+}
+
+#page_4.active .text, #page_4:hover .text 
+{
+background:url(../images/construction.jpg) 0 0 no-repeat;
+}
+
+
+.cont 
+{
+position:absolute;
+padding-left:30px;
+width:466px;
+height:440px;
+overflow:hidden;
+}
+
+.marg_right1 
+{
+margin-right:24px;
+}
+
+.marg_right2 
+{
+margin-right:15px;
+}
+
+.pad_top1 
+{
+padding-top:20px;
+float:left;
+padding-left:30px;
+}
+
+.marg_top1 
+{
+margin-top:-5px;
+}
+.pad_left1 
+{
+padding-left:32px;
+}
+.pad_bot1 
+{
+padding-bottom:10px;
+}
+
+.pad_bot2 
+{
+padding-bottom:22px
+}
+
+.color1 
+{
+color:#558f0b
+}
+
+.link1 
+{
+font-weight:bold;
+color:#558f0b;
+text-decoration:none;
+}
+
+.link1:hover 
+{
+text-decoration:underline;
+}
+
+#product_textile
+{
+	background:url(../images/product_textile.jpg);
+	background-repeat: no-repeat;
+	height:198px;
+	width:620px;	
+}
+
+#product_paint
+{
+	background:url(../images/product_paint.jpg);
+	background-repeat: no-repeat;
+	height:198px;
+	width:620px;	
+}
+
+#product_paper
+{
+	background:url(../images/product_paper.jpg);
+	background-repeat: no-repeat;
+	height:198px;
+	width:620px;	
+}
+
+#product_construction
+{
+	background:url(../images/product_construction.jpg);
+	background-repeat: no-repeat;
+	height:198px;
+	width:620px;	
+}
+
+#product_textile h1, #product_paint h1, #product_paper h1, #product_construction h1 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	color: #666;
+	float:left;
+	padding-left:360px;
+	padding-top:120px;
+}
+
+#product_textile h2, #product_paint h2, #product_paper h2, #product_construction h2 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	color: #333333;
+	float:left;
+	padding-left:360px;
+	cursor:pointer;
+}
+
+a:focus {
+	outline: none;
+}
+#panel {
+
+	height: 200px;
+	display: none;
+}
+.slide {
+	margin-top: 4px;
+	
+	padding: 0px;	
+	
+}
+.btn-slide {
+	background: url(images/white-arrow.gif) no-repeat right -50px;
+	text-align: center;
+	width: 144px;
+	height: 31px;
+	padding: 10px 10px 0 0;
+	margin: 0 auto;
+	display: block;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	color: #fff;
+	text-decoration: none;
+}
+
+.slidingDiv {
+    height:300px;
+    background-color: #99CCFF;
+    padding:20px;
+    margin-top:10px;
+    border-bottom:5px solid #3399FF;
+}
+.active {
+	background-position: right 12px;
+}
+#closePop{
+padding-left:200px;
+float:right;
+}
+
